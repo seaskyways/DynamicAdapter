@@ -24,7 +24,7 @@ open class DynamicAdapter<T, HOLDER : DynamicViewHolder?> protected constructor(
     protected var recyclerViewRef = WeakReference<RecyclerView?>(null)
 //    private var recyclerView: RecyclerView? = null
     
-    protected var onBindLambda: DynamicAdapter<T, HOLDER>.(T?, View?, DynamicViewHolder?, Int) -> Unit = { _, _, _, _ -> }
+    protected var onBindLambda: DynamicAdapter<T, HOLDER>.(T?, View?, DynamicViewHolder?, Int) -> Unit = { u1, u2, u3, u4 -> }
     protected var onCreateViewHolderLambda: ((parent: View, viewType: Int) -> HOLDER)? = null
     
     fun overrideViewHolder(onViewHolder: (parent: View, viewType: Int) -> HOLDER): DynamicAdapter<T, HOLDER> {
@@ -37,7 +37,7 @@ open class DynamicAdapter<T, HOLDER : DynamicViewHolder?> protected constructor(
     }
     
     
-    fun layout(layoutRes: Int? = null, view: AnkoComponent<ViewGroup>? = null): DynamicAdapter<T, HOLDER>  = apply {
+    fun layout(layoutRes: Int? = null, view: AnkoComponent<ViewGroup>? = null): DynamicAdapter<T, HOLDER> = apply {
         when {
             layoutRes != null -> layoutInt = layoutRes
             view != null -> layoutView = view
@@ -103,7 +103,7 @@ class AnkoDynamicAdapter<T, A : AnkoComponent<ViewGroup>> private constructor() 
     fun onAnkoBind(__onBind: AnkoDynamicAdapter<T, A>.(T, A, DynamicViewHolder, Int) -> Unit) = apply { _onBind = __onBind }
     
     fun onBindSimple(__onBindSimple: AnkoDynamicAdapter<T, A>.(T, A, Int) -> Unit) = apply {
-        _onBind = { T, A, _, position ->
+        _onBind = { T, A, u1, position ->
             __onBindSimple(T, A, position)
         }
     }
