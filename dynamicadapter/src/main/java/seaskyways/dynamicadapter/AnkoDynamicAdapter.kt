@@ -1,4 +1,4 @@
-package com.scopeexperts.scopemarket.helpers
+package seaskyways.dynamicadapter
 
 import android.view.Gravity.apply
 import android.view.View
@@ -49,7 +49,7 @@ class AnkoDynamicAdapter<T, A : AnkoComponent<ViewGroup>> private constructor() 
     override fun onBindViewHolder(holder: DynamicViewHolder?, position: Int) {
         val data = dataList?.elementAtOrNull(position)
         @Suppress("UNCHECKED_CAST")
-        val aholder = holder as AnkoDynamicAdapter.AnkoViewHolder<A>
+        val aholder = holder as AnkoViewHolder<A>
         if (data != null)
             _onBind?.invoke(this, data, aholder.ankoComponent, aholder, position)
     }
